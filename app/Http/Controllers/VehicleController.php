@@ -10,7 +10,12 @@ class VehicleController extends Controller
     public function index()
     {
         $vehicles = Vehicle::get();
-        //dd($vehicles);
+        /*$vehicles = Vehicle::select('brand','model')->where('id','>', 1)->get();
+        foreach ($vehicles as $row) {
+            echo $row->brand;
+        }
+        exit();
+        */
 
         return view('vehicle.index', compact('vehicles'));
     }
