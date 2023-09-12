@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vehicle extends Model
 {
@@ -11,4 +12,10 @@ class Vehicle extends Model
 
     protected $table = 'vehicle';
     protected $primaryKey = 'id';
+
+    public static function getVehicleDetail($id)
+    {
+        $vehicles = DB::select("select * from vehicle where id = " . $id);
+        return $vehicles;
+    }
 }

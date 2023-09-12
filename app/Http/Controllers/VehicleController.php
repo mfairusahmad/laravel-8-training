@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 
 class VehicleController extends Controller
 {
     public function index()
     {
         $vehicles = Vehicle::get();
+        // $id = 3;
+        // $vehicles = Vehicle::getVehicleDetail($id);
+        // dd($vehicles);
+
         /*$vehicles = Vehicle::select('brand','model')->where('id','>', 1)->get();
         foreach ($vehicles as $row) {
             echo $row->brand;
@@ -33,10 +39,16 @@ class VehicleController extends Controller
         $input['model'] = $request->model;
         $input['type'] = $request->type;
         $input['year'] = $request->year;
-        $input['status'] = 1;
         $input['created_at'] = now();
 
-        Vehicle::insert($input);
+        DB::beginTransaction();
+        try {
+            Vehicle::insert($input);
+            DB::commit();
+        } catch (\Exception $ex) {
+            // dd($ex);
+            DB::rollBack();
+        }
 
         //get ID from the new inserted data
         //$vehicleId = Vehicle::insertGetId($input);
@@ -44,8 +56,9 @@ class VehicleController extends Controller
         return redirect(route('vehicle.index'))->withSuccess('Vehicle Data Successfully Created!');
     }
 
-    public function edit($id)
+    public function edit($encryptId)
     {
+        $id = Crypt::decrypt($encryptId);
         $edit = true;
         $vehicle = Vehicle::where('id', $id)->first();
 
