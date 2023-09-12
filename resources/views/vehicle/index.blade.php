@@ -37,6 +37,7 @@
                                     @else
                                         <a href="{{ route('vehicle.edit', Crypt::encrypt($row->id)) }}" class="btn btn-primary">Edit</a>
                                         <a href="{{ route('vehicle.delete.soft', Crypt::encrypt($row->id)) }}" class="btn btn-danger">Delete</a>
+
                                     @endif
 
 
@@ -49,4 +50,5 @@
         </div>
     </div>
 </div>
+
 @endsection
