@@ -8,6 +8,12 @@
                 <div class="card-header">{{ __('Vehicle') }}</div>
 
                 <div class="card-body">
+                    @if(Session::get('success', false))
+                        <div class="alert alert-success alert-notification">
+                            <i class="fa fa-check"></i>
+                            {{ Session::get('success') }}
+                        </div>
+                    @endif
                     <a href="{{ route('vehicle.create') }}" class="btn btn-primary">Add</a>
                     <br>
                     <table class="table table-striped ">
@@ -16,6 +22,7 @@
                             <th>Model</th>
                             <th>Type</th>
                             <th>Year</th>
+                            <th>Option</th>
                         </tr>
                         @foreach ($vehicles as $row)
                             <tr>
@@ -23,6 +30,9 @@
                                 <td>{{ $row->model }}</td>
                                 <td>{{ $row->type }}</td>
                                 <td>{{ $row->year }}</td>
+                                <td>
+                                    <a href="{{ route('vehicle.edit', $row->id) }}" class="btn btn-primary">Edit</a>
+                                </td>
                             </tr>
                         @endforeach
                     </table>
