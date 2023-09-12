@@ -46,7 +46,7 @@
             </div>
             <div class="form-group">
                 <label for="year">Year:</label>
-                <input type="text"
+                <input type="number"
                 class="form-control"
                 id="year"
                 name="year"
