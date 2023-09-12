@@ -24,4 +24,22 @@ class VehicleController extends Controller
     {
         return view('vehicle.form');
     }
+
+    public function save(Request $request)
+    {
+        $input = [];
+        $input['brand'] = $request->brand;
+        $input['model'] = $request->model;
+        $input['type'] = $request->type;
+        $input['year'] = $request->year;
+        $input['status'] = 1;
+        $input['created_at'] = now();
+
+        Vehicle::insert($input);
+
+        //get ID from the new inserted data
+        //$vehicleId = Vehicle::insertGetId($input);
+
+        return redirect(route('vehicle.index'));
+    }
 }

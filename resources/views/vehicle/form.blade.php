@@ -9,7 +9,8 @@
 
                 <div class="card-body">
                     <h2>Car Information Form</h2>
-        <form>
+        <form action="{{ route('vehicle.save') }}" method="post">
+            @csrf
             <div class="form-group">
                 <label for="brand">Brand:</label>
                 <input type="text" class="form-control" id="brand" name="brand" placeholder="Enter Brand">
