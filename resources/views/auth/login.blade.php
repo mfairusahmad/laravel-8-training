@@ -22,7 +22,9 @@
                                 <!-- Social login form-->
                                 <div class="card my-5">
                                     <div class="card-body p-5 text-center">
-                                        <div class="h3 fw-light mb-3">Sign In</div>
+                                        <div class="h3 fw-light mb-3">
+                                            @include('vehicle.test')
+                                        </div>
                                         <!-- Social login links-->
                                         <a class="btn btn-icon btn-facebook mx-1" href="#!"><i class="fab fa-facebook-f fa-fw fa-sm"></i></a>
                                         <a class="btn btn-icon btn-github mx-1" href="#!"><i class="fab fa-github fa-fw fa-sm"></i></a>
@@ -62,7 +64,7 @@
                                     <div class="card-body px-5 py-4">
                                         <div class="small text-center">
                                             New user?
-                                            <a href="auth-register-social.html">Create an account!</a>
+                                            <a href="{{ route('register') }}">Create an account!</a>
                                         </div>
                                     </div>
                                 </div>

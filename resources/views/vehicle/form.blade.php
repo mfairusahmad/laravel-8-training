@@ -5,9 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Vehicle') }}</div>
+                <div class="card-header">{{ __('Vehicle') }} </div>
 
                 <div class="card-body">
+                    @include('vehicle.test')
                     <h2>Car Information Form</h2>
         <form action="
         @if($edit)
@@ -65,6 +66,9 @@
         </div>
     </div>
 </div>
+@endsection
+
+@push('js')
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script>
     $("#ajaxDelete").on("click", function (e) {
@@ -86,4 +90,4 @@
         });
     });
 </script>
-@endsection
+@endpush
