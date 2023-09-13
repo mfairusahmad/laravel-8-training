@@ -14,9 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/vehicle', [App\Http\Controllers\VehicleController::class, 'index'])->name('vehicle.index');
+Route::get('/vehicle/create', [App\Http\Controllers\VehicleController::class, 'create'])->name('vehicle.create');
+Route::post('/vehicle/save', [App\Http\Controllers\VehicleController::class, 'save'])->name('vehicle.save');
+Route::get('/vehicle/edit/{id}', [App\Http\Controllers\VehicleController::class, 'edit'])->name('vehicle.edit');
+Route::post('/vehicle/update/{id}', [App\Http\Controllers\VehicleController::class, 'update'])->name('vehicle.update');
+Route::get('/vehicle/delete/{id}', [App\Http\Controllers\VehicleController::class, 'delete'])->name('vehicle.delete');
+Route::get('/vehicle/delete/soft/{id}', [App\Http\Controllers\VehicleController::class, 'softDelete'])->name('vehicle.delete.soft');
+
+Route::get('/vehicle/delete/ajax/{id}',
+[App\Http\Controllers\VehicleController::class, 'ajaxDelete'])
+->name('vehicle.delete.ajax');
